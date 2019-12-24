@@ -1,7 +1,4 @@
-import useOnClickOutside from './useOnClickOutside'
+import useClickOutside from './useClickOutside'
 import useScript from './useScript'
 
-export {
-    useOnClickOutside,
-    useScript
-}
+export { useClickOutside, useScript }

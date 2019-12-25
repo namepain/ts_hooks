@@ -1,6 +1,6 @@
 import useClickOutside from './useClickOutside'
 import useScript from './useScript'
-import useEventlistener from './useEventlistener'
+import useEventListener from './useEventListener'
 import useInterval from './useInterval'
 
-export { useClickOutside, useScript, useEventlistener, useInterval }
+export { useClickOutside, useScript, useEventListener, useInterval }

@@ -1,4 +1,4 @@
-import { useEventlistener } from '../src/index'
+import { useEventListener } from '../src/index'
 import { fn, element } from '../src/useEventListener'
 import { renderHook, act } from '@testing-library/react-hooks'
 
@@ -8,16 +8,16 @@ interface Params {
   element?: element
 }
 
-describe('useEventlistener', () => {
+describe('useEventListener', () => {
   it('should be defined', () => {
-    expect(useEventlistener).toBeDefined()
+    expect(useEventListener).toBeDefined()
   })
 
   it('should work right', () => {
     let num = 0
     const handler = () => (num = num + 2)
     const { rerender, unmount } = renderHook(
-      ({ eventName, handler, element }: Params) => useEventlistener(eventName, handler, element),
+      ({ eventName, handler, element }: Params) => useEventListener(eventName, handler, element),
       {
         initialProps: {
           eventName: 'click',

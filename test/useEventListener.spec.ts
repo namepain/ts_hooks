@@ -2,7 +2,7 @@ import { useEventlistener } from '../src/index'
 import { fn, element } from '../src/useEventListener'
 import { renderHook, act } from '@testing-library/react-hooks'
 
-interface params {
+interface Params {
   eventName: string
   handler: fn
   element?: element
@@ -17,7 +17,7 @@ describe('useEventlistener', () => {
     let num = 0
     const handler = () => (num = num + 2)
     const { rerender, unmount } = renderHook(
-      ({ eventName, handler, element }: params) => useEventlistener(eventName, handler, element),
+      ({ eventName, handler, element }: Params) => useEventlistener(eventName, handler, element),
       {
         initialProps: {
           eventName: 'click',

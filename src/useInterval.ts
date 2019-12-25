@@ -1,6 +1,6 @@
 import { useRef, useEffect } from 'react'
 
-interface saveRef {
+interface SaveRef {
   fn: () => any
   loop: (() => any) | undefined
   timer: number
@@ -11,7 +11,7 @@ export default function useInterval(
   delay: number | null | undefined,
   immediate?: boolean
 ) {
-  const saved = useRef<saveRef>({
+  const saved = useRef<SaveRef>({
     fn: callback,
     loop: undefined,
     timer: 0

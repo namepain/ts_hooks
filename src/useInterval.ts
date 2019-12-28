@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, useCallback } from 'react'
 
 interface SaveRef {
   fn: () => any
@@ -19,7 +19,7 @@ export default function useInterval(
 
   useEffect(() => {
     saved.current.fn = callback
-    if (immediate) {
+    if (immediate && delay) {
       saved.current.fn()
     }
   }, [callback, immediate])
@@ -40,7 +40,7 @@ export default function useInterval(
     }
   }, [delay])
   return {
-    stop: () => clearTimeout(saved.current.timer),
-    resume: () => saved.current.loop && saved.current.loop()
+    stop: useCallback(() => clearTimeout(saved.current.timer), []),
+    resume: useCallback(() => saved.current.loop && saved.current.loop(), [])
   }
 }

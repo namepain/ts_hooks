@@ -67,8 +67,8 @@ describe('useInterval', () => {
     // immediate change
     rerender({ fn: fn1, delay: 100, immediate: true })
     expect(fn).toHaveBeenCalledTimes(4)
-    expect(fn1).toHaveBeenCalledTimes(3)
+    expect(fn1).toHaveBeenCalledTimes(2)
     jest.advanceTimersByTime(200)
-    expect(fn1).toHaveBeenCalledTimes(5)
+    expect(fn1).toHaveBeenCalledTimes(4)
   })
 })

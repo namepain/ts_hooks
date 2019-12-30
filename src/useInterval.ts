@@ -18,11 +18,12 @@ export default function useInterval(
   })
 
   useEffect(() => {
+    immediate && callback()
+  }, [])
+
+  useEffect(() => {
     saved.current.fn = callback
-    if (immediate && delay) {
-      saved.current.fn()
-    }
-  }, [callback, immediate])
+  }, [callback])
 
   // Use setTimeout rather than interval
   useEffect(() => {

@@ -71,4 +71,17 @@ describe('useInterval', () => {
     jest.advanceTimersByTime(200)
     expect(fn1).toHaveBeenCalledTimes(4)
   })
+
+  it('should call immediate', () => {
+    let fn = jest.fn()
+    expect(setTimeout).toHaveBeenCalledTimes(0)
+    renderHook(({ fn, delay, immediate }: params) => useInterval(fn, delay, immediate), {
+      initialProps: {
+        fn,
+        delay: 0,
+        immediate: true
+      }
+    })
+    expect(fn).toHaveBeenCalledTimes(1)
+  })
 })

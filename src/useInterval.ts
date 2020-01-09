@@ -42,6 +42,9 @@ export default function useInterval(
   }, [delay])
   return {
     stop: useCallback(() => clearTimeout(saved.current.timer), []),
-    resume: useCallback(() => saved.current.loop && saved.current.loop(), [])
+    resume: useCallback(() => {
+      clearTimeout(saved.current.timer)
+      saved.current.timer = saved.current.loop && saved.current.loop()
+    }, [])
   }
 }

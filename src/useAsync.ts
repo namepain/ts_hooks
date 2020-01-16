@@ -50,6 +50,7 @@ export default function useAsync(
 
   useEffect(() => {
     if (ref.current.immediate) {
+      // tslint:disable-next-line:no-floating-promises
       run(...(deps as DependencyList))
     }
   }, [run])

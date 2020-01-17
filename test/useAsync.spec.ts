@@ -157,7 +157,7 @@ describe('useAsync', () => {
         }, deley || 100)
       )
     }
-    const { result, rerender, waitForNextUpdate } = renderHook(
+    const { result, unmount, waitForNextUpdate } = renderHook(
       ({ fn, deps, immediate }: params) => useAsync(fn, deps, immediate),
       {
         initialProps: {
@@ -204,6 +204,19 @@ describe('useAsync', () => {
     expect(fn).toBeCalledTimes(5)
     expect(fn1).toBeCalledTimes(5)
     expect(result.current.loading).toBe(false)
+    expect(result.current.value).toBe('reject6')
+    expect(result.current.error).toBe(null)
+
+    // unmount condition
+    act(() => {
+      result.current.run('unmount')
+    })
+    unmount()
+
+    jest.runAllTimers()
+    expect(fn).toBeCalledTimes(6)
+    expect(fn1).toBeCalledTimes(6)
+    expect(result.current.loading).toBe(true)
     expect(result.current.value).toBe('reject6')
     expect(result.current.error).toBe(null)
 

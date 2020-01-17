@@ -23,12 +23,10 @@ export default function useAsync(
   }
 
   const run = useCallback(async (...args) => {
-    console.log(...args)
     const uid = ++ref.current.count
     try {
       setLoading(true)
       const value = await ref.current.fn(...args)
-      console.log('uid ======> ', uid, ref.current.count)
       if (uid === ref.current.count) {
         setValue(value)
         setError(null)
@@ -52,6 +50,10 @@ export default function useAsync(
     if (ref.current.immediate) {
       // tslint:disable-next-line:no-floating-promises
       run(...(deps as DependencyList))
+    }
+    // ignore request after unmount
+    return () => {
+      ++ref.current.count
     }
   }, [run])
 
